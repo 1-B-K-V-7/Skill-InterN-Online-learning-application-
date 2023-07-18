@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+
+
+
+<div class="container mt-3">
+
+    <div class="row">
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+
+            <h2 class='text-center'>Login</h2>
+            {% include "messages.html" %}
+
+
+            <form action="/auth/login" method="post">{% csrf_token %}
+                <br />
+                
+                <label for="email">Email</label>
+                <div class="form-group">
+                    <input type="email" class="form-control p-2 mb-3" id="email" name="email" placeholder="Enter email"
+                        required />
+                </div>
+                <label for="pass1">Password </label>
+                <div class="form-group">
+
+                    <input type="password" class="form-control p-2 mb-3" id="pass1" name="pass1"
+                         required />
+
+                    <input type="checkbox" onclick="showPassword()"><span id="sp">Show Password</span><i
+                        class="fa-solid fa-eye"></i>
+                    
+                    
+
+                </div>
+
+                
+                
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit" class="btn btn-success get-started-btn">Log~in</button>
+                </div>
+
+                <br />
+                New User? <a href="/auth/signup">Sign~up</a>
+                <br />
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="col-md-4"></div>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock body %}
+
+
+{% block script %}
+<script>
+
+    console.log("working")
+
+
+    function showPassword() {
+        var x = document.getElementById("pass1");
+        var y = document.getElementById("sp");
+        if (x.type === "password" ) {
+            x.type = "text";
+            y.innerText = "Hide Password";
+        } else {
+            x.type = "password";
+            y.innerText = "Show Password";
+        }
+    }
+</script>
+{% endblock script %}

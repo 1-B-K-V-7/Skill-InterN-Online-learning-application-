@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Courses{% endblock title %}
+
+
+
+
+{% block style %}
+<style>
+    body {
+        background-image: url('{% static "images/b2.jpg" %}');
+        background-size: cover;
+        background-position: center;
+    }
+
+  .my-custom-style {
+  width: 100%;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Lucida Handwriting", sans-serif;
+  color: rgb(208, 254, 149);
+}
+
+
+    .course-card {
+        background-color:#A8DAE7;
+        border-radius: 20px;
+        /* Add any other styling you want for the course cards */
+    }
+
+    .card-img-top {
+        border-radius: 40px;
+    }
+
+      
+    .course-card .card-text {
+        font-size: inherit;
+        font-weight: bold;
+        
+        color: rgb(58, 98, 159);
+    }
+
+      .course-card .card-title {
+        font-size: 25px;
+        font-weight: bold;
+        font-family: "Lucida Handwriting", sans-serif;
+        color: rgb(37, 61, 96);
+    }
+</style>
+{% endblock style%}
+
+{% block body %}
+
+
+
+
+
+<div class="container mt-3">
+    <h3 class="text-center my-custom-style">Available Courses</h3>
+    {% include "messages.html" %}
+    <hr>
+    <br>
+    <div class="row">
+        
+    
+        {% for c in courses %}
+        {% comment %} if below col-md-3 modified to col-md-4 then only 3 corses will be there in 1 line {% endcomment %}
+        <div class="col-md-3"> 
+        <div class="card ml-3 course-card">
+            <img src="{{c.image.url}}" id="card-img" class="card-img-top p-3" height="150px" alt="not found">
+            <div class="card-body">
+              <h3 class="card-title">{{c.courseName}} </h3>
+              <p class="card-text"> <b>Fee {{c.courseFee}}</b> Rs | <b>Duration {{c.courseDuration}} Months</b></p>
+
+              
+
+              <p> {{c.stars}}<i class="fa-regular fa-star"></i></p>
+                     
+              <a href="/course/{{c.courseName}}" class="btn btn-primary">know More</a>
+              <a href="/enroll" class="btn btn-outline-dark">Enroll</a>
+            </div>
+          </div>
+        </div>
+    
+        {% endfor %}  
+    
+    </div> 
+    
+    </div>
+
+
+
+
+
+
+{% endblock body %}
+
+{% block Courses %}
+active
+{% endblock Courses %}
